@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block tytul %}Strona główna{% endblock %}
+
+{% block tresc %}
+<h1>Moje zadania ({{ zadania|length }})</h1>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>#</th>
+            <th>Tytul</th>
+            <th>Opis</th>
+            <th>Wykonane</th>
+            <th>Data dodania</th>
+            <th>Akcje</th>
+        </tr>
+        {% for z in zadania %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ z["tytul"] }}</td>
+            <td>{{ z["opis"] if z["opis"] else "-" }}</td>
+            <td>{{ "Tak" if z["wykonane"] else "Nie" }}</td>
+            <td>{{ z["data_dodania"].strftime("%d.%m.%Y %H:%M") }}</td>
+            <td>
+                <a href="/wykonaj/{{z['id']}}" class="btn btn-warning">Wykonaj</a>
+                <a href="/edytuj/{{z['id']}}" class="btn btn-warning">Edytuj</a>
+                <a href="/usun/{{z['id']}}" class="btn btn-warning">Usuń</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/dodaj" class="btn btn-warning">Dodaj nowe zadanie</a>
+{% endblock %}

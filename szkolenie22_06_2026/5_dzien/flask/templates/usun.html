@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block tytul %}Usun{% endblock %}
+
+{% block tresc %}
+<h1> Czy jesteś pewien że chcesz usunąć </h1>
+
+<table border="1" cellpadding="8">
+        <tr>
+            <th>Tytul</th>
+            <th>Opis</th>
+            <th>Wykonane</th>
+        </tr>
+        <tr>
+            <td>{{ zadanie["tytul"] }}</td>
+            <td>{{ zadanie["opis"] if zadanie["opis"] else "-" }}</td>
+            <td>{{ "Tak" if zadanie["wykonane"] else "Nie" }}</td>
+        </tr>
+    </table>
+
+
+<form method="post">
+        <button type="submit">Usun</button>
+</form>
+
+{% endblock %}
